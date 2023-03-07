@@ -106,7 +106,7 @@
     }
 
     .c-title {
-      font-size: 3.5rem;
+      font-size: 3.1rem;
       transform: skewY(-3deg);
       color: var(--yellow);
     }
@@ -155,6 +155,10 @@
       width: 1px;
     }
 
+    .u-prevent-break {
+      display: inline-block;
+    }
+
     @media only screen and (min-width: 656px) {
       .c-layout {
         padding: 48px;
@@ -175,9 +179,9 @@
 </head>
 
 <body>
-  <h1 class="u-visually-hidden">Hoeveel vrouwen spelen er komende editie op Jera on Air</h1>
+  <h1 class="u-visually-hidden">Hoeveel vrouwen spelen er komende editie op <span class="u-prevent-break">Jera on Air</span></h1>
   <div class="c-layout">
-    <h2 class="c-title">Er spelen <strong class="u-highlight-text" id="WOMEN">7</strong> vrouwen op Jera on Air in 2023.</h2>
+    <h2 class="c-title">Er spelen <strong class="u-highlight-text" id="WOMEN">7</strong> vrouwen op <span class="u-prevent-break">Jera on Air</span> <span class="u-prevent-break">in 2023.</span></h2>
     <p class="c-text">En <strong class="u-highlight-text" id="NB">0</strong> gender non-conforming artiesten.</p>
     <p class="c-text">En <strong class="u-highlight-text" id="MEN">299</strong> mannen.</p>
   </div>
