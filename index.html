@@ -213,7 +213,7 @@
     <div class="c-layout">
       <h2 class="c-title">
         Er spelen
-        <strong class="u-highlight-text" id="WOMEN">10</strong> vrouwen op
+        <strong class="u-highlight-text" id="WOMEN">11</strong> vrouwen op
         <span class="u-prevent-break">Jera on Air</span>
         <span class="u-prevent-break">in 2023.</span>
       </h2>
@@ -222,7 +222,7 @@
         non-conforming artiesten.
       </p>
       <p class="c-text">
-        En <strong class="u-highlight-text" id="MEN">341</strong> mannen.
+        En <strong class="u-highlight-text" id="MEN">412</strong> mannen.
       </p>
     </div>
     <a
@@ -233,10 +233,15 @@
     >
     <footer class="c-footer">
       <div class="c-footer__content">
+        <span
+          title="Eagle, Vulture, Buzzard & Hawk stage. Raven stage lineup wordt niet geboekt door Jera on Air zelf."
+          >*</span
+        >
+        |
         <a
           target="_blank"
           href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvdEksT2vq_QpNePUQgMb0R3_i8ML1JVswSOnLnvLhgssmHrgnRjkiEVSFxg-rfVqRNcPEJwt5KfDD/pubhtml"
-          >Laatst geupdatet: <span id="LAST_UPDATED">09-04-2023</span></a
+          >Laatst geupdatet: <span id="LAST_UPDATED">07-06-2023</span></a
         >
         |
         <a target="_blank" href="mailto:contact@hoeveelvrouwenopjera.nl"
@@ -262,7 +267,7 @@
     const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
     const FIELDS = {
       MEN: "Men",
-      WOMEN: "Women",
+      WOMEN: "Women (Jera booked only)",
       NB: "Gender non-conforming",
       LAST_UPDATED: "Last updated",
     };
@@ -270,6 +275,8 @@
     const getTotals = async () => {
       const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${TAB_NAME}?alt=json&key=${API_KEY}`;
       const sheetData = await fetch(sheetUrl).then((result) => result.json());
+
+      console.log(sheetUrl, sheetData);
 
       return sheetData?.values;
     };
