@@ -241,7 +241,7 @@
     const totals = await getTotals();
     console.log(totals);
     Object.keys(FIELDS).forEach((key) => {
-      console.log(totals, totals.find);
+      console.log(totals, totals.find, totals.find(total => { console.log(total); return false }), totals.find(total => total.includes(FIELDS[key])));
 
       const value = totals.find(total => total.includes(FIELDS[key]))[1];
       document.getElementById(key).innerHTML = value;
