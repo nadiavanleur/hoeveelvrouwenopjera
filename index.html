@@ -186,16 +186,16 @@
   <div class="c-layout">
     <h2 class="c-title">
       Er spelen
-      <strong class="u-highlight-text" id="WOMEN">12</strong> vrouwen op
+      <strong class="u-highlight-text" id="WOMEN">??</strong> vrouwen op
       <span class="u-prevent-break">Jera on Air</span>
       <span class="u-prevent-break">in 2024.</span>
     </h2>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="NB">0</strong> gender
+      En <strong class="u-highlight-text" id="NB">??</strong> gender
       non-conforming artiesten.
     </p>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="MEN">389</strong> mannen.
+      En <strong class="u-highlight-text" id="MEN">??</strong> mannen.
     </p>
   </div>
   <a target="_blank" href="https://www.jeraonair.nl/nl/line-up/" class="c-link">Line up.</a>
@@ -239,7 +239,7 @@
 
   const setTotals = async () => {
     const totals = await getTotals();
-
+    console.log(totals);
     Object.keys(FIELDS).forEach((key) => {
       const value = totals.find((total) => total.includes(FIELDS[key]))[1];
       document.getElementById(key).innerHTML = value;
