@@ -188,7 +188,7 @@
       Er spelen
       <strong class="u-highlight-text" id="WOMEN">12</strong> vrouwen op
       <span class="u-prevent-break">Jera on Air</span>
-      <span class="u-prevent-break">in 2023.</span>
+      <span class="u-prevent-break">in 2024.</span>
     </h2>
     <p class="c-text">
       En <strong class="u-highlight-text" id="NB">0</strong> gender
@@ -205,8 +205,8 @@
         title="Eagle, Vulture, Buzzard & Hawk stage. Raven stage lineup wordt niet geboekt door Jera on Air zelf.">*</span>
       |
       <a target="_blank"
-        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vRx38mUatYjw3WNh7T6wBTcywDlOJIzgN2QhFksKTPYbpwAnqpk60IpQ_g2LjVDZIqipPbpME4Hq-ox/pubhtml">Laatst
-        geupdatet: <span id="LAST_UPDATED">25-03-2024</span></a>
+        href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvdEksT2vq_QpNePUQgMb0R3_i8ML1JVswSOnLnvLhgssmHrgnRjkiEVSFxg-rfVqRNcPEJwt5KfDD/pubhtml">Laatst
+        geupdatet: <span id="LAST_UPDATED">07-06-2024</span></a>
       |
       <a target="_blank" href="mailto:contact@hoeveelvrouwenopjera.nl">Contact</a>
     </div>
@@ -218,7 +218,7 @@
 </body>
 
 <script>
-  const SPREADSHEET_ID = "126KipgJ1FLrN_437tGqfWEf8HZ7aySZZWaT2pqFojvA";
+  const SPREADSHEET_ID = "190Q6oUEDXWbl0Um617Rd9nYf72JoXDFsnTa_-s-s63U";
   const TAB_NAME = "2024_totals";
   const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
   const FIELDS = {
@@ -241,7 +241,6 @@
     const totals = await getTotals();
 
     Object.keys(FIELDS).forEach((key) => {
-      console.log(totals);
       const value = totals.find((total) => total.includes(FIELDS[key]))[1];
       document.getElementById(key).innerHTML = value;
     });
