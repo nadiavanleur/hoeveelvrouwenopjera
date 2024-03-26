@@ -69,6 +69,10 @@
       color: var(--maincolor);
       height: 100%;
       line-height: 1.2;
+      text-rendering: optimizeLegibility !important;
+      font-smooth: always !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
@@ -106,7 +110,7 @@
     }
 
     .c-title {
-      font-size: 3.1rem;
+      font-size: 3.2rem;
       transform: skewY(-3deg);
       color: var(--yellow);
     }
@@ -185,8 +189,11 @@
   </h1>
   <div class="c-layout">
     <h2 class="c-title">
-      Er spelen
-      <strong class="u-highlight-text" id="WOMEN">13</strong> vrouwen op
+      <span class="u-prevent-break">
+        Er spelen
+        <strong class="u-highlight-text" id="WOMEN">13</strong> vrouwen
+      </span>
+      op
       <span class="u-prevent-break">Jera on Air</span>
       <span class="u-prevent-break">in 2024.</span>
     </h2>
@@ -231,17 +238,12 @@
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${TAB_NAME}?alt=json&key=${API_KEY}`;
     const sheetData = await fetch(sheetUrl).then((result) => result.json());
 
-    console.log(sheetUrl, sheetData);
-
     return sheetData?.values;
   };
 
   const setTotals = async () => {
     const totals = await getTotals();
-    console.log(totals);
     Object.keys(FIELDS).forEach((key) => {
-      console.log(totals, totals.find, totals.find(total => { console.log(total); return true }), totals.find(total => total.includes(FIELDS[key])));
-
       const value = totals.find(total => total.includes(FIELDS[key]))[1];
       document.getElementById(key).innerHTML = value;
     });
