@@ -149,6 +149,17 @@
       color: var(--supportcolor);
     }
 
+    .u-monospace {
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    .u-monospace span {
+      display: inline-block;
+      width: 1ch;
+      text-align: center;
+    }
+
     .u-visually-hidden {
       clip: rect(0 0 0 0);
       clip-path: inset(50%);
@@ -191,17 +202,26 @@
     <h2 class="c-title">
       <span class="u-prevent-break">
         Er spelen
-        <strong class="u-highlight-text" id="WOMEN">00</strong> vrouwen
+        <strong class="u-highlight-text u-monospace" id="WOMEN">
+          <span>0</span>
+          <span>0</span>
+        </strong> vrouwen
       </span>
       op
       <span class="u-prevent-break">Jera on Air</span>
       <span class="u-prevent-break">in 2024.</span>
     </h2>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="NB">0</strong> non-binaire artiesten.
+      En <strong class="u-highlight-text u-monospace" id="NB">
+        <span>0</span>
+      </strong> non-binaire artiesten.
     </p>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="MEN">000</strong> mannen.
+      En <strong class="u-highlight-text u-monospace" id="MEN">
+        <span>0</span>
+        <span>0</span>
+        <span>0</span>
+      </strong> mannen.
     </p>
   </div>
   <a target="_blank" href="https://www.jeraonair.nl/nl/line-up/" class="c-link">Line up.</a>
@@ -212,7 +232,19 @@
       |
       <a target="_blank"
         href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvdEksT2vq_QpNePUQgMb0R3_i8ML1JVswSOnLnvLhgssmHrgnRjkiEVSFxg-rfVqRNcPEJwt5KfDD/pubhtml">Laatst
-        geupdatet: <span id="LAST_UPDATED">00-00-0000</span></a>
+        geupdatet: <span id="LAST_UPDATED" class="u-monospace">
+          <span>0</span>
+          <span>0</span>
+          <span>-</span>
+          <span>0</span>
+          <span>0</span>
+          <span>-</span>
+          <span>0</span>
+          <span>0</span>
+          <span>0</span>
+          <span>0</span>
+        </span>
+      </a>
       |
       <a target="_blank" href="mailto:contact@hoeveelvrouwenopjera.nl">Contact</a>
     </div>
@@ -234,22 +266,24 @@
     LAST_UPDATED: "Last updated",
   };
 
-  const getTotals = async () => {
+  const getValues = async () => {
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${TAB_NAME}?alt=json&key=${API_KEY}`;
     const sheetData = await fetch(sheetUrl).then((result) => result.json());
 
     return sheetData?.values;
   };
 
-  const setTotals = async () => {
-    const totals = await getTotals();
+  const setValues = async () => {
+    const values = await getValues();
     Object.keys(FIELDS).forEach((key) => {
-      const value = totals.find(total => total.includes(FIELDS[key]))[1];
-      document.getElementById(key).innerHTML = value;
+      const value = values.find(total => total.includes(FIELDS[key]))[1];
+      const stringValue = value.toString();
+      const htmlValue = stringValue.split("").map((char) => `<span>${char}</span>`).join("");
+      document.getElementById(key).innerHTML = htmlValue;
     });
   };
 
-  setTotals();
+  setValues();
 </script>
 
 </html>
