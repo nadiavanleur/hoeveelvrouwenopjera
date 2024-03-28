@@ -276,6 +276,7 @@
   const setValues = async () => {
     const values = await getValues();
     [...Object.keys(FIELDS)].forEach((key) => {
+      console.log(values);
       const value = [...values].find(total => total.includes(FIELDS[key]))[1];
       const stringValue = value.toString();
       const htmlValue = stringValue.split("").map((char) => `<span>${char}</span>`).join("");
