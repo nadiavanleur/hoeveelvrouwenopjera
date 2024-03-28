@@ -19,6 +19,8 @@
   --spacer-lg: 24px;
   --spacer-xl: 32px;
   --spacer-xxl: 48px;
+
+  --spotify-background: rgb(40, 40, 40);
 }
 
 html {
@@ -128,6 +130,7 @@ body.menu-open .c-menu__backdrop {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .c-menu__hamburger-button {
@@ -163,7 +166,7 @@ body.menu-open .c-menu__backdrop {
 }
 
 .c-menu__hamburger-button-icon {
-  color: var(--color-menu-background);
+  color: var(--color-background);
   position: absolute;
   left: 50%;
   top: 50%;
@@ -232,7 +235,8 @@ body:not(.menu-open) .c-menu__list-container {
   color: inherit;
 }
 
-.c-menu__list a:hover {
+.c-menu__list a:hover,
+.c-menu__list a.active {
   color: var(--color-hover);
 }
 
@@ -280,6 +284,13 @@ body:not(.menu-open) .c-menu__list-container {
     bottom: 20%;
     right: 20%;
     margin: 0;
+  }
+
+  .c-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
 
   .c-menu__hamburger-button {
