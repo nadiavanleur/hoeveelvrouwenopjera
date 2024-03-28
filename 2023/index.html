@@ -56,25 +56,37 @@
       --hovercolor: #db2e47;
       --cyboxcolor: #333;
       --yellow: #d29d30;
+
+      --color-background: var(--backcolor);
+      --color-text: var(--maincolor);
+      --color-footer-text: var(--cyboxcolor);
+      --color-menu-background: var(--headerfooterbgcolor);
+      --color-hover: var(--yellow);
+      --color-support: var(--supportcolor);
     }
 
     *::selection {
-      background-color: var(--yellow);
+      background-color: var(--color-hover);
     }
 
     html {
       font-family: "block";
       font-size: 1rem;
-      background-color: var(--backcolor);
-      color: var(--maincolor);
+      background-color: var(--color-background);
+      color: var(--color-text);
       height: 100%;
       line-height: 1.2;
+      text-rendering: optimizeLegibility !important;
+      font-smooth: always !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
       height: 100%;
       position: relative;
       margin: 0;
+      font-size: 2rem;
     }
 
     a {
@@ -83,7 +95,7 @@
     }
 
     a:hover {
-      color: var(--maincolor);
+      color: var(--color-text);
     }
 
     .c-layout {
@@ -98,7 +110,8 @@
       position: fixed;
       bottom: 0;
       right: 0;
-      color: var(--cyboxcolor);
+      font-size: 1rem;
+      color: var(--color-footer-text);
     }
 
     .c-footer__content {
@@ -106,18 +119,17 @@
     }
 
     .c-title {
-      font-size: 3.1rem;
+      font-size: 3.4rem;
       transform: skewY(-3deg);
-      color: var(--yellow);
+      color: var(--color-hover);
     }
 
     .c-title::selection,
     .c-title *::selection {
-      background-color: var(--maincolor);
+      background-color: var(--color-text);
     }
 
     .c-text {
-      font-size: 2rem;
       transform: skewY(-3deg);
     }
 
@@ -126,7 +138,7 @@
       text-transform: uppercase;
       font-size: 6rem;
       text-decoration: none;
-      color: var(--maincolor);
+      color: var(--color-text);
       transform: skewY(-3deg);
       opacity: 0.5;
       margin-left: 24px;
@@ -140,9 +152,70 @@
       border-radius: 12px;
     }
 
+    .c-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    .c-menu__hamburger-button {
+      height: 70px;
+      width: 70px;
+      text-align: center;
+      box-sizing: border-box;
+      cursor: pointer !important;
+      position: relative;
+      transition: margin 300ms ease-out;
+      background: transparent;
+      border: none;
+      color: var(--color-text);
+    }
+
+    .c-menu__hamburger-button:hover,
+    .c-menu__hamburger-button:focus {
+      color: var(--color-hover);
+    }
+
+    .c-menu__hamburger-button-bg {
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .c-menu__hamburger-button-icon {
+      color: var(--color-menu-background);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: block;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      width: 30px;
+      height: 30px;
+      z-index: 2;
+    }
+
     .u-highlight-text {
       font-weight: bold;
-      color: var(--supportcolor);
+      color: var(--color-support);
+    }
+
+    .u-monospace {
+      display: inline-flex;
+      justify-content: center;
+    }
+
+    .u-monospace span {
+      display: inline-block;
+      width: 1ch;
+      text-align: center;
     }
 
     .u-visually-hidden {

@@ -1,0 +1,193 @@
+@font-face {
+  font-family: "block";
+  src: url(https://hoeveelvrouwenopjera.nl/blocktregcon-webfont.woff2);
+}
+
+@font-face {
+  font-family: "Jera on Air";
+  src: url(https://hoeveelvrouwenopjera.nl/jera-font-air-webfont.woff2);
+}
+
+*::selection {
+  background-color: var(--color-hover);
+}
+
+html {
+  font-family: "block";
+  font-size: 1rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: 100%;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility !important;
+  font-smooth: always !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  height: 100%;
+  position: relative;
+  margin: 0;
+  font-size: 2rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--color-text);
+}
+
+.c-layout {
+  max-width: 51rem;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.c-footer {
+  width: 100%;
+  text-align: right;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  font-size: 1rem;
+  color: var(--color-footer-text);
+}
+
+.c-footer__content {
+  padding: 8px 12px;
+}
+
+.c-title {
+  font-size: 3.4rem;
+  transform: skewY(-3deg);
+  color: var(--color-hover);
+}
+
+.c-title::selection,
+.c-title *::selection {
+  background-color: var(--color-text);
+}
+
+.c-text {
+  transform: skewY(-3deg);
+}
+
+.c-link {
+  font-family: "Jera on Air";
+  text-transform: uppercase;
+  font-size: 6rem;
+  text-decoration: none;
+  color: var(--color-text);
+  transform: skewY(-3deg);
+  opacity: 0.5;
+  margin-left: 24px;
+}
+
+.c-link:hover {
+  opacity: 1;
+}
+
+.c-spotify-embed {
+  border-radius: 12px;
+}
+
+.c-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.c-menu__hamburger-button {
+  height: 70px;
+  width: 70px;
+  text-align: center;
+  box-sizing: border-box;
+  cursor: pointer !important;
+  position: relative;
+  transition: margin 300ms ease-out;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+}
+
+.c-menu__hamburger-button:hover,
+.c-menu__hamburger-button:focus {
+  color: var(--color-hover);
+}
+
+.c-menu__hamburger-button-bg {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.c-menu__hamburger-button-icon {
+  color: var(--color-menu-background);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 30px;
+  height: 30px;
+  z-index: 2;
+}
+
+.u-highlight-text {
+  font-weight: bold;
+  color: var(--color-support);
+}
+
+.u-monospace {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.u-monospace span {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+}
+
+.u-visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.u-prevent-break {
+  display: inline-block;
+}
+
+@media only screen and (min-width: 656px) {
+  .c-layout {
+    padding: 48px;
+  }
+
+  .c-title {
+    font-size: 5rem;
+  }
+
+  .c-link {
+    position: absolute;
+    bottom: 20%;
+    right: 20%;
+    margin: 0;
+  }
+}
