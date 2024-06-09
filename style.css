@@ -303,3 +303,9 @@ body:not(.menu-open) .c-menu__list-container {
     width: 600px;
   }
 }
+
+@-moz-document url-prefix() {
+  html {
+    zoom: 86%;
+  }
+}
