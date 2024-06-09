@@ -34,6 +34,7 @@ html {
   font-smooth: always !important;
   -webkit-font-smoothing: antialiased !important;
   -moz-osx-font-smoothing: grayscale;
+  zoom: 86%;
 }
 
 body {
@@ -272,6 +273,10 @@ body:not(.menu-open) .c-menu__list-container {
 }
 
 @media only screen and (min-width: 656px) {
+  html {
+    zoom: 100%;
+  }
+
   .c-layout {
     padding: var(--spacer-xxl);
   }
@@ -301,11 +306,5 @@ body:not(.menu-open) .c-menu__list-container {
 
   .c-menu__list-container {
     width: 600px;
-  }
-}
-
-@-moz-document url-prefix() {
-  html {
-    zoom: 86%;
   }
 }
