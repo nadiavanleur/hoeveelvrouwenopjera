@@ -78,7 +78,8 @@ a:hover {
 }
 
 .c-title {
-  font-size: 3.1rem;
+  /* font-size: 3.1rem; */
+  font-size: 2rem;
   transform: skewY(-3deg);
   color: var(--color-hover);
 }
