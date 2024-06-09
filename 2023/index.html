@@ -56,6 +56,20 @@
       --color-support: var(--supportcolor);
     }
   </style>
+
+  <script>
+    const YEAR = 2023;
+    const SPREADSHEET_ID = "190Q6oUEDXWbl0Um617Rd9nYf72JoXDFsnTa_-s-s63U";
+    const TAB_NAME = `${YEAR}_totals`;
+    const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
+    const FIELDS = {
+      YEAR,
+      MEN: "Men (Jera booked only)",
+      WOMEN: "Women (Jera booked only)",
+      NB: "Gender non-conforming",
+      LAST_UPDATED: "Last updated",
+    };
+  </script>
 </head>
 
 <body>
@@ -298,16 +312,16 @@
   <div class="c-layout">
     <h2 class="c-title">
       Er spelen
-      <strong class="u-highlight-text" id="WOMEN">12</strong> vrouwen op
+      <strong class="u-highlight-text" data-id="WOMEN">12</strong> vrouwen op
       <span class="u-prevent-break">Jera on Air</span>
-      <span class="u-prevent-break">in 2023.</span>
+      <span class="u-prevent-break">in <span data-id="YEAR">2023</span>.</span>
     </h2>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="NB">0</strong> gender
+      En <strong class="u-highlight-text" data-id="NB">0</strong> gender
       non-conforming artiesten.
     </p>
     <p class="c-text">
-      En <strong class="u-highlight-text" id="MEN">389</strong> mannen.
+      En <strong class="u-highlight-text" data-id="MEN">389</strong> mannen.
     </p>
   </div>
   <a target="_blank" href="https://www.jeraonair.nl/nl/line-up/" class="c-link">Line up.</a>
@@ -318,7 +332,7 @@
       |
       <a target="_blank"
         href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvdEksT2vq_QpNePUQgMb0R3_i8ML1JVswSOnLnvLhgssmHrgnRjkiEVSFxg-rfVqRNcPEJwt5KfDD/pubhtml">Laatst
-        geupdatet: <span id="LAST_UPDATED">07-06-2023</span></a>
+        geupdatet: <span data-id="LAST_UPDATED">07-06-2023</span></a>
       |
       <a target="_blank" href="mailto:contact@hoeveelvrouwenopjera.nl">Contact</a>
     </div>
@@ -330,37 +344,37 @@
 </body>
 
 <script>
-  const SPREADSHEET_ID = "190Q6oUEDXWbl0Um617Rd9nYf72JoXDFsnTa_-s-s63U";
-  const TAB_NAME = "2023_totals";
-  const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
-  const FIELDS = {
-    MEN: "Men",
-    WOMEN: "Women (Jera booked only)",
-    NB: "Gender non-conforming",
-    LAST_UPDATED: "Last updated",
-  };
-
   const toggleMenu = () => {
     document.body.classList.toggle("menu-open");
   };
 
-  const getTotals = async () => {
+  const getValues = async () => {
     const sheetUrl = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${TAB_NAME}?alt=json&key=${API_KEY}`;
     const sheetData = await fetch(sheetUrl).then((result) => result.json());
 
     return sheetData?.values;
   };
 
-  const setTotals = async () => {
-    const totals = await getTotals();
+  const setValues = async () => {
+    const resValues = await getValues();
+    [...Object.keys(FIELDS)].forEach((key) => {
+      const resValue = resValues.find(total => total.includes(FIELDS[key]))?.[1];
+      let htmlValue = FIELDS[key];
 
-    Object.keys(FIELDS).forEach((key) => {
-      const value = totals.find((total) => total.includes(FIELDS[key]))[1];
-      document.getElementById(key).innerHTML = value;
+      if (resValue) {
+        const stringValue = resValue.toString();
+        htmlValue = stringValue.split("").map((char) => `<span>${char}</span>`).join("");
+      }
+
+      console.log(document.querySelector(`[data-id="${key}"]`));
+      console.log(htmlValue);
+      [...document.querySelectorAll(`[data-id="${key}"]`)].forEach(el => {
+        el.innerHTML = htmlValue;
+      })
     });
   };
 
-  setTotals();
+  setValues();
 </script>
 
 </html>

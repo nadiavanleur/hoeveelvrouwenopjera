@@ -56,6 +56,20 @@
       --color-support: var(--backdrop1);
     }
   </style>
+
+  <script>
+    const YEAR = 2024;
+    const SPREADSHEET_ID = "190Q6oUEDXWbl0Um617Rd9nYf72JoXDFsnTa_-s-s63U";
+    const TAB_NAME = `${YEAR}_totals`;
+    const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
+    const FIELDS = {
+      YEAR,
+      MEN: "Men (Jera booked only)",
+      WOMEN: "Women (Jera booked only)",
+      NB: "Gender non-conforming",
+      LAST_UPDATED: "Last updated",
+    };
+  </script>
 </head>
 
 <body>
@@ -117,7 +131,7 @@
           <a href="/2023">2023</a>
         </li>
         <li>
-          <a href="/" class="active">2024</a>
+          <a href="/" class="active"><span data-id="YEAR">2024</span></a>
         </li>
         <li>
           <a href="https://www.jeraonair.nl/nl/line-up/" target="_blank">Line up</a>
@@ -299,22 +313,22 @@
     <h2 class="c-title">
       <span class="u-prevent-break">
         Er spelen
-        <strong class="u-highlight-text u-monospace" id="WOMEN">
+        <strong class="u-highlight-text u-monospace" data-id="WOMEN">
           <span>0</span>
           <span>0</span>
         </strong> vrouwen
       </span>
       op
       <span class="u-prevent-break">Jera on Air</span>
-      <span class="u-prevent-break">in 2024.</span>
+      <span class="u-prevent-break">in <span data-id="YEAR">2024</span>.</span>
     </h2>
     <p class="c-text">
-      En <strong class="u-highlight-text u-monospace" id="NB">
+      En <strong class="u-highlight-text u-monospace" data-id="NB">
         <span>0</span>
       </strong> non-binaire artiesten.
     </p>
     <p class="c-text">
-      En <strong class="u-highlight-text u-monospace" id="MEN">
+      En <strong class="u-highlight-text u-monospace" data-id="MEN">
         <span>0</span>
         <span>0</span>
         <span>0</span>
@@ -329,7 +343,7 @@
       |
       <a target="_blank"
         href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSvdEksT2vq_QpNePUQgMb0R3_i8ML1JVswSOnLnvLhgssmHrgnRjkiEVSFxg-rfVqRNcPEJwt5KfDD/pubhtml">Laatst
-        geupdatet: <span id="LAST_UPDATED" class="u-monospace">
+        geupdatet: <span data-id="LAST_UPDATED" class="u-monospace">
           <span>0</span>
           <span>0</span>
           <span>-</span>
@@ -353,16 +367,6 @@
 </body>
 
 <script>
-  const SPREADSHEET_ID = "190Q6oUEDXWbl0Um617Rd9nYf72JoXDFsnTa_-s-s63U";
-  const TAB_NAME = "2024_totals";
-  const API_KEY = "AIzaSyBXy2H2vFwbhaIcN3Mb8Ovl5pArn99FtKc";
-  const FIELDS = {
-    MEN: "Men (Jera booked only)",
-    WOMEN: "Women (Jera booked only)",
-    NB: "Gender non-conforming",
-    LAST_UPDATED: "Last updated",
-  };
-
   const toggleMenu = () => {
     document.body.classList.toggle("menu-open");
   };
@@ -375,12 +379,21 @@
   };
 
   const setValues = async () => {
-    const values = await getValues();
+    const resValues = await getValues();
     [...Object.keys(FIELDS)].forEach((key) => {
-      const value = values.find(total => total.includes(FIELDS[key]))[1];
-      const stringValue = value.toString();
-      const htmlValue = stringValue.split("").map((char) => `<span>${char}</span>`).join("");
-      document.getElementById(key).innerHTML = htmlValue;
+      const resValue = resValues.find(total => total.includes(FIELDS[key]))?.[1];
+      let htmlValue = FIELDS[key];
+
+      if (resValue) {
+        const stringValue = resValue.toString();
+        htmlValue = stringValue.split("").map((char) => `<span>${char}</span>`).join("");
+      }
+
+      console.log(document.querySelector(`[data-id="${key}"]`));
+      console.log(htmlValue);
+      [...document.querySelectorAll(`[data-id="${key}"]`)].forEach(el => {
+        el.innerHTML = htmlValue;
+      })
     });
   };
 
