@@ -78,8 +78,7 @@ a:hover {
 }
 
 .c-title {
-  /* font-size: 3.1rem; */
-  font-size: 2rem;
+  font-size: 3.4rem;
   transform: skewY(-3deg);
   color: var(--color-hover);
 }
@@ -278,7 +277,7 @@ body:not(.menu-open) .c-menu__list-container {
   }
 
   .c-title {
-    font-size: 5rem;
+    font-size: 4.5rem;
   }
 
   .c-link {
