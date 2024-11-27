@@ -8,6 +8,11 @@
   src: url(https://hoeveelvrouwenopjera.nl/jera-font-air-webfont.woff2);
 }
 
+@font-face {
+  font-family: "Roboto Mono";
+  src: url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+}
+
 *::selection {
   background-color: var(--color-hover);
 }
@@ -20,11 +25,14 @@
   --spacer-xl: 32px;
   --spacer-xxl: 48px;
 
+  --font-family-heading: "block";
+  --font-family-text: "Roboto Mono", monospace;
+
   --spotify-background: rgb(40, 40, 40);
 }
 
 html {
-  font-family: "block";
+  font-family: var(--font-family-heading);
   font-size: 1rem;
   background-color: var(--color-background);
   color: var(--color-text);
@@ -57,10 +65,31 @@ a:hover {
   color: var(--color-text);
 }
 
+details {
+  margin-bottom: var(--spacer-lg);
+}
+
+summary {
+  cursor: pointer;
+  /* color: var(--color-support); */
+  font-family: var(--font-family-heading);
+  margin-bottom: var(--spacer-md);
+}
+
+.c-details__content {
+  font-family: var(--font-family-text);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
 .c-layout {
   max-width: 51rem;
   margin: 0 auto;
   padding: var(--spacer-lg);
+}
+
+.c-layout--pb {
+  margin-bottom: 80px;
 }
 
 .c-footer {
